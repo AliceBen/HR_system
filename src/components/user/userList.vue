@@ -42,15 +42,6 @@
           </template>
         </el-table-column>
       </el-table>
-      <!-- <el-pagination
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="queryInfo.pagenum"
-        :page-sizes="[1, 2, 3, 5]"
-        :page-size="queryInfo.pagesize"
-        layout="total, sizes, prev, pager, next, jumper"
-        :total="total"
-      ></el-pagination>-->
     </el-card>
     <!-- 编辑用户 -->
     <el-dialog @close="editorDialogClosed" title="修改用户信息" :visible.sync="editorForm">
