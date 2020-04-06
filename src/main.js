@@ -10,17 +10,12 @@ import './plugins/element'
 import './assets/fonts/iconfont.css'
 
 import axios from 'axios'
-//设置请求的根路径
-axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 
-// 将axios挂载到Vue原型上
+//设置请求的根路径
+// config > index.js 内已经设置过代理，解决跨域问题
+axios.defaults.baseURL = '/api'
 Vue.prototype.$http = axios
-axios.interceptors.request.use(config => {
-  console.log(config);
-  config.headers.Authorization = window.sessionStorage.getItem('token')
-  // 在最后必须 return config
-  return config
-})
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

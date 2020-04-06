@@ -5,13 +5,17 @@
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
     </div> -->
-    <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" style="width: 100%">
+    <el-table
+      ref="multipleTable"
+      :data="tableData"
+      tooltip-effect="dark"
+      style="width: 100%"
+    >
       <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column prop="name" label="培训名称"></el-table-column>
-      <el-table-column prop="place" label="培训地址" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="resName" label="负责人" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="ntime" label="开始日期" ></el-table-column>
-      <el-table-column prop="etime" label="结束日期"></el-table-column>
+      <el-table-column prop="name" label="奖惩名称" width="120"></el-table-column>
+      <el-table-column prop="reason" label="奖惩原因" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="instance" label="奖惩金额" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="d_time" label="奖惩时间" show-overflow-tooltip></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button
@@ -32,14 +36,14 @@
     <!-- 编辑 -->
     <el-dialog @close="editorDialogClosed" title="修改用户信息" :visible.sync="editorForm">
       <el-form ref="editorFrom" :model="editorFrom" :rules="addUserRules">
-        <el-form-item prop="name" label="培训名称" :label-width="formLabelWidth">
-          <el-input v-model="editorFrom.name" autocomplete="off" disabled></el-input>
+        <el-form-item prop="name" label="奖惩名称" :label-width="formLabelWidth">
+          <el-input v-model="editorFrom.name" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item prop="place" label="培训地址" :label-width="formLabelWidth">
-          <el-input v-model="editorFrom.place" autocomplete="off"></el-input>
+        <el-form-item prop="reason" label="奖惩原因" :label-width="formLabelWidth">
+          <el-input v-model="editorFrom.reason" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item prop="resName" label="负责人" :label-width="formLabelWidth">
-          <el-input v-model="editorFrom.resName" autocomplete="off"></el-input>
+        <el-form-item prop="instance" label="奖惩金额" :label-width="formLabelWidth">
+          <el-input v-model="editorFrom.instance" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -66,7 +70,7 @@ export default {
     }
   },
   created() {
-    this.getList()
+    this.getList();
   },
   methods: {
     // 删除用户
@@ -76,7 +80,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        axios.delete('/api/trainRecordList/del/' + id).then(res => {
+        axios.delete('/api/prizePunishList/del/' + id).then(res => {
           if (res.data.code !== 'OK') {
             return this.$message.error('删除失败')
           } else {
@@ -92,11 +96,11 @@ export default {
     // 编辑submit
     editorSubmit() {
       axios
-        .put('/api/trainRecordList/update', {
+        .put('/api/prizePunishList/update', {
           id: this.editorFrom.id,
           name: this.editorFrom.name,
-          place: this.editorFrom.place,
-          resName: this.editorFrom.resName
+          reason: this.editorFrom.reason,
+          instance: this.editorFrom.instance
         })
         .then(res => {
           if (res.data.code !== 'OK') {
@@ -117,7 +121,7 @@ export default {
     // 编辑用户
     editorClick(id) {
       this.editorForm = true
-      axios.get('/api/trainRecordList/view/' + id).then(res => {
+      axios.get('/api/prizePunishList/view/' + id).then(res => {
         if (res.data.code !== 'OK') {
           return this.$message.error('信息查询失败')
         } else {
@@ -126,7 +130,7 @@ export default {
       })
     },
     getList() {
-      axios.get('/api/trainRecordList/pages').then(res => {
+      axios.get('/api/prizePunishList/pages').then(res => {
         if (res.data.code !== 'OK') {
           return this.$message.error('信息查询失败')
         } else {
@@ -135,7 +139,7 @@ export default {
         }
       })
     },
-    cancelBtn() {
+     cancelBtn() {
       this.editorForm = false
     }
   }
