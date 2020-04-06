@@ -56,7 +56,7 @@
           <el-input v-model="editorFrom.zc" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item prop="idcard" label="身份证号" :label-width="formLabelWidth">
-          <el-input v-model="editorFrom.zc" autocomplete="off"></el-input>
+          <el-input v-model="editorFrom.idcard" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item prop="address" label="地址" :label-width="formLabelWidth">
           <el-input v-model="editorFrom.address" autocomplete="off"></el-input>

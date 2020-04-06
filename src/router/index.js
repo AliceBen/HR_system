@@ -4,7 +4,7 @@ import Login from '@/components/Login.vue'
 import Home from '@/components/Home.vue'
 import Welcome from '@/components/Welcome.vue'
 import Users from '@/components/user/Users.vue'
-import editorUser from '@/components/user/editorUser.vue'
+// import editorUser from '@/components/user/editorUser.vue'
 import Rights from '@/components/power/Rights.vue'
 import Roles from '@/components/power/Roles.vue'
 import addReward from '@/components/reward/addReward.vue'
@@ -34,7 +34,7 @@ const router = new Router({
         { path: '/welcome', component: Welcome },
         { path: '/Users', component: Users },
         { path: '/userList', component: userList },
-        { path: '/editorUser', component: editorUser },
+        // { path: '/editorUser', component: editorUser },
         { path: '/rights', component: Rights },
         { path: '/Roles', component: Roles },
         { path: '/addReward', component: addReward },

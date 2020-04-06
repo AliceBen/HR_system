@@ -1,6 +1,6 @@
 <template>
   <div class="wrap">
-    <el-form ref="form" :model="sizeForm" label-width="80px" size="mini">
+    <el-form ref="form" :model="sizeForm" label-width="80px">
       <el-form-item label="培训名称">
         <el-input v-model="sizeForm.name"></el-input>
       </el-form-item>

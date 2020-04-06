@@ -4,18 +4,13 @@
       <el-input placeholder="请输入内容" v-model="input3" class="input-with-select">
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
-    </div> -->
-    <el-table
-      ref="multipleTable"
-      :data="tableData"
-      tooltip-effect="dark"
-      style="width: 100%"
-    >
+    </div>-->
+    <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" style="width: 100%">
       <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column prop="name" label="奖惩名称" width="120"></el-table-column>
-      <el-table-column prop="reason" label="奖惩原因" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="instance" label="奖惩金额" show-overflow-tooltip></el-table-column>
-      <el-table-column prop="d_time" label="奖惩时间" show-overflow-tooltip></el-table-column>
+      <el-table-column prop="reason" label="奖惩原因"></el-table-column>
+      <el-table-column prop="instance" label="奖惩金额"></el-table-column>
+      <el-table-column prop="dTime" label="奖惩时间"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button
@@ -70,7 +65,7 @@ export default {
     }
   },
   created() {
-    this.getList();
+    this.getList()
   },
   methods: {
     // 删除用户
@@ -113,7 +108,7 @@ export default {
               message: '用户编辑成功',
               type: 'success'
             })
-            this.getList();
+            this.getList()
             this.editorForm = false
           }
         })
@@ -139,7 +134,7 @@ export default {
         }
       })
     },
-     cancelBtn() {
+    cancelBtn() {
       this.editorForm = false
     }
   }

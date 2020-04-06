@@ -14,7 +14,7 @@
         <el-date-picker
           value-format="yyyy-MM-dd"
           format="yyyy-MM-dd"
-          v-model="form.d_time"
+          v-model="form.dTime"
           type="date"
           placeholder="选择日期"
         ></el-date-picker>
@@ -36,7 +36,7 @@ export default {
         name: '',
         reason: '',
         instance: '',
-        d_time: ''
+        dTime: ''
       }
     }
   },
