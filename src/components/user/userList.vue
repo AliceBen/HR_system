@@ -2,19 +2,19 @@
   <div>
     <!-- 卡片视图 -->
     <el-card class="box-card">
-      <!-- <el-row :gutter="40">
+      <el-row :gutter="40">
         <el-col :span="10">
           <el-input
             @clear="getUserList()"
-            v-model="queryInfo.query"
+            v-model="searchValue"
             clearable
-            placeholder="请输入内容"
+            placeholder="请输入员工姓名查询"
             class="input-with-select"
           >
             <el-button @click="getUserList()" slot="append" icon="el-icon-search"></el-button>
           </el-input>
         </el-col>
-      </el-row>-->
+      </el-row>
       <el-table :data="users" border style="width: 100%;margin-top:30px;">
         <el-table-column type="index" label="#"></el-table-column>
         <el-table-column prop="name" label="姓名"></el-table-column>
@@ -85,7 +85,8 @@ export default {
       editorFrom: {},
       formLabelWidth: '80px',
       editorDialogClosed: '',
-      addUserRules: {}
+      addUserRules: {},
+      searchValue:'',
     }
   },
   created() {
@@ -152,7 +153,12 @@ export default {
     },
     // 获取列表数据
     getUserList() {
-      axios.get('/api/staffList/pages').then(res => {
+      console.log(this.searchValue,'===searchValue')
+      axios.get('/api/staffList/pages',{
+        params:{
+          name: this.searchValue
+        }
+      }).then(res => {
         if (res.data.code !== 'OK') {
           return this.$message.error('信息查询失败')
         } else {

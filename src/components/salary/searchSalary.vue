@@ -1,10 +1,10 @@
 <template>
   <div>
-    <!-- <div style="margin-bottom: 15px;">
-      <el-input placeholder="请输入内容" v-model="input3" class="input-with-select">
-        <el-button slot="append" icon="el-icon-search"></el-button>
+    <div style="margin-bottom: 15px;">
+      <el-input placeholder="请输入员工姓名" v-model="searchValue" class="input-with-select">
+        <el-button @click="getList()" slot="append" icon="el-icon-search"></el-button>
       </el-input>
-    </div> -->
+    </div>
     <el-table
       ref="multipleTable"
       :data="tableData"
@@ -14,6 +14,7 @@
     >
       <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column prop="userId" label="员工编号"></el-table-column>
+      <el-table-column prop="staffName" label="员工姓名"></el-table-column>
       <el-table-column prop="salary" label="基本工资" show-overflow-tooltip></el-table-column>
       <el-table-column prop="wxian" label="浮动范围" show-overflow-tooltip></el-table-column>
       <el-table-column prop="ggjin" label="公积金" show-overflow-tooltip></el-table-column>
@@ -42,6 +43,9 @@
       <el-form ref="editorFrom" :model="editorFrom" :rules="addUserRules">
         <el-form-item prop="userId" label="员工编号" :label-width="formLabelWidth">
           <el-input v-model="editorFrom.userId" autocomplete="off" disabled></el-input>
+        </el-form-item>
+         <el-form-item prop="staffName" label="员工姓名" :label-width="formLabelWidth">
+          <el-input v-model="editorFrom.staffName" autocomplete="off" disabled></el-input>
         </el-form-item>
         <el-form-item prop="salary" label="基本工资" :label-width="formLabelWidth">
           <el-input v-model="editorFrom.salary" autocomplete="off"></el-input>
@@ -73,7 +77,8 @@ export default {
       editorFrom: {},
       formLabelWidth: '80px',
       editorDialogClosed: '',
-      addUserRules: {}
+      addUserRules: {},
+      searchValue:''
     }
   },
   created() {
@@ -137,7 +142,11 @@ export default {
       })
     },
     getList() {
-      axios.get('/api/salaryList/pages').then(res => {
+      axios.get('/api/salaryList/pages',{
+          params:{
+          staffName: this.searchValue
+        }
+      }).then(res => {
         if (res.data.code !== 'OK') {
           return this.$message.error('信息查询失败')
         } else {
@@ -165,3 +174,8 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.el-input-group {
+  width: 40% !important;
+}
+</style>
