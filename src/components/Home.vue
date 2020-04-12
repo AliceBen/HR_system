@@ -49,7 +49,7 @@
 export default {
   data() {
     return {
-      isCollapse: false, //导航栏显示
+      isCollapse: true, //导航栏显示
       menuList: [
         {
           id: 125,
@@ -224,11 +224,11 @@ export default {
   width: 50px;
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
+  // width: 200px;
   min-height: 100%;
 }
 .el-menu--collapse {
-    width: 64px;
+    // width: 64px;
     height: 100%;
 }
 .el-submenu .el-menu-item{

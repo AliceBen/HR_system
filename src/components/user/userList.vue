@@ -2,30 +2,30 @@
   <div>
     <!-- 卡片视图 -->
     <el-card class="box-card">
-      <!-- <el-row :gutter="40">
+      <el-row :gutter="40">
         <el-col :span="10">
           <el-input
             @clear="getUserList()"
-            v-model="queryInfo.query"
+            v-model="searchValue"
             clearable
-            placeholder="请输入内容"
+            placeholder="请输入员工姓名查询"
             class="input-with-select"
           >
             <el-button @click="getUserList()" slot="append" icon="el-icon-search"></el-button>
           </el-input>
         </el-col>
-      </el-row>-->
+      </el-row>
       <el-table :data="users" border style="width: 100%;margin-top:30px;">
         <el-table-column type="index" label="#"></el-table-column>
         <el-table-column prop="name" label="姓名"></el-table-column>
-        <el-table-column prop="phone" label="电话"></el-table-column>
-        <el-table-column prop="idcard" label="身份证号码"></el-table-column>
+        <el-table-column prop="phone" label="电话" width="140px"></el-table-column>
+        <el-table-column prop="idcard" label="身份证号码" width="200px"></el-table-column>
+        <el-table-column prop="position" label="部门"></el-table-column>
         <el-table-column prop="zc" label="职位"></el-table-column>
         <el-table-column prop="cl" label="学历"></el-table-column>
-        <el-table-column prop="position" label="职称"></el-table-column>
         <el-table-column prop="np" label="籍贯"></el-table-column>
         <el-table-column prop="address" label="地址"></el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="140px">
           <template slot-scope="scope">
             <el-button
               type="primary"
@@ -85,7 +85,8 @@ export default {
       editorFrom: {},
       formLabelWidth: '80px',
       editorDialogClosed: '',
-      addUserRules: {}
+      addUserRules: {},
+      searchValue:'',
     }
   },
   created() {
@@ -152,7 +153,12 @@ export default {
     },
     // 获取列表数据
     getUserList() {
-      axios.get('/api/staffList/pages').then(res => {
+      console.log(this.searchValue,'===searchValue')
+      axios.get('/api/staffList/pages',{
+        params:{
+          name: this.searchValue
+        }
+      }).then(res => {
         if (res.data.code !== 'OK') {
           return this.$message.error('信息查询失败')
         } else {

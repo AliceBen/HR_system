@@ -1,17 +1,17 @@
 <template>
   <div>
-    <!-- <div style="margin-bottom: 15px;">
-      <el-input placeholder="请输入内容" v-model="input3" class="input-with-select">
-        <el-button slot="append" icon="el-icon-search"></el-button>
+    <div style="margin-bottom: 15px;">
+      <el-input placeholder="请输入奖惩名称" v-model="searchValue" class="input-with-select">
+        <el-button slot="append" icon="el-icon-search" @click="getList()"></el-button>
       </el-input>
-    </div>-->
+    </div>
     <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" style="width: 100%">
       <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column prop="name" label="奖惩名称" width="120"></el-table-column>
       <el-table-column prop="reason" label="奖惩原因"></el-table-column>
       <el-table-column prop="instance" label="奖惩金额"></el-table-column>
       <el-table-column prop="dTime" label="奖惩时间"></el-table-column>
-      <el-table-column label="操作">
+      <el-table-column label="操作" width="140px">
         <template slot-scope="scope">
           <el-button
             type="primary"
@@ -61,7 +61,8 @@ export default {
       editorFrom: {},
       formLabelWidth: '80px',
       editorDialogClosed: '',
-      addUserRules: {}
+      addUserRules: {},
+      searchValue:'',
     }
   },
   created() {
@@ -125,7 +126,11 @@ export default {
       })
     },
     getList() {
-      axios.get('/api/prizePunishList/pages').then(res => {
+      axios.get('/api/prizePunishList/pages',{
+        params:{
+          name: this.searchValue
+        }
+      }).then(res => {
         if (res.data.code !== 'OK') {
           return this.$message.error('信息查询失败')
         } else {
@@ -140,3 +145,8 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.el-input-group {
+  width: 40% !important;
+}
+</style>

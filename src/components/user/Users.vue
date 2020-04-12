@@ -15,13 +15,17 @@
           <el-date-picker v-model="form.birthday" type="date" placeholder="选择日期"></el-date-picker>
         </div>
       </el-form-item>
-      <el-form-item label="职称">
+      <el-form-item label="部门">
         <el-input v-model="form.position"></el-input>
       </el-form-item>
       <el-form-item label="职位">
         <el-select v-model="form.zc" placeholder="请选择职位">
-          <el-option label="经理" value="经理"></el-option>
+          <el-option label="销售" value="销售"></el-option>
           <el-option label="测试" value="测试"></el-option>
+          <el-option label="运营" value="运营"></el-option>
+          <el-option label="开发" value="开发"></el-option>
+          <el-option label="产品" value="产品"></el-option>
+          <el-option label='总监' value="总监"></el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="电话">
