@@ -7,6 +7,8 @@
     </div>
     <el-table ref="multipleTable" :data="tableData" tooltip-effect="dark" style="width: 100%">
       <el-table-column type="selection" width="55"></el-table-column>
+      <el-table-column prop="userId" label="员工编号"></el-table-column>
+      <el-table-column prop="staffName" label="员工姓名"></el-table-column>
       <el-table-column prop="name" label="奖惩名称" width="120"></el-table-column>
       <el-table-column prop="reason" label="奖惩原因"></el-table-column>
       <el-table-column prop="instance" label="奖惩金额"></el-table-column>
